@@ -49,7 +49,6 @@ fn csv_to_json_s(csv_content: String) -> String {
             if(j<headers.length() && j < fields.length()){
             let str1=headers[j].to_string()
              let view1 = str1.view(start_offset = str1.offset_of_nth_char(0).unwrap(),end_offset = str1.offset_of_nth_char(str1.length()-1).unwrap())
-
              let str2=fields[j].to_string()
              let view2 = str2.view(start_offset = str2.offset_of_nth_char(0).unwrap(),end_offset = str2.offset_of_nth_char(str2.length()-1).unwrap())
              json_result=json_result+ "\"" + view1.to_string() + "\"" +":"+ "\""+ view2.to_string() + "\""
