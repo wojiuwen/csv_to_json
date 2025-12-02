@@ -1,0 +1,10 @@
+{
+  "is-main": true,
+  "import": [
+    {  
+      "path": "wjw/csv_to_json/src/lib",
+      "alias": "csv_trans"
+      
+  }
+  ]
+}
