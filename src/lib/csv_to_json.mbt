@@ -27,7 +27,7 @@ fn csv_to_json_s(csv_content: String) -> String {
     let mut json_result="[" 
     
     // 遍历所有数据行
-    for i=1;i<lines.length();i=i+1{
+    for i=1;i<lines.length()-1;i=i+1{
            let line =lines[i]
            
            // 跳过空行
@@ -46,14 +46,18 @@ fn csv_to_json_s(csv_content: String) -> String {
            // 遍历标题，确保不越界访问fields数组
            for j=0;j<headers.length() && j < fields.length() ;j=j+1{
             // 添加键值对，修复引号格式
-            if(j<headers.length() && j < fields.length()){
+            if(j<headers.length()-1 && j < fields.length()-1){
             let str1=headers[j].to_string()
+             let str2=fields[j].to_string()
+             json_result=json_result+ "\"" + str1 + "\"" +":"+ "\""+ str2 + "\""
+            }
+            if(j==headers.length()-1 &&j==fields.length()-1){
+              let str1=headers[j].to_string()
              let view1 = str1.view(start_offset = str1.offset_of_nth_char(0).unwrap(),end_offset = str1.offset_of_nth_char(str1.length()-1).unwrap())
              let str2=fields[j].to_string()
              let view2 = str2.view(start_offset = str2.offset_of_nth_char(0).unwrap(),end_offset = str2.offset_of_nth_char(str2.length()-1).unwrap())
              json_result=json_result+ "\"" + view1.to_string() + "\"" +":"+ "\""+ view2.to_string() + "\""
             }
-            
                     
 
             // 添加字段间的逗号（如果不是最后一个字段）
